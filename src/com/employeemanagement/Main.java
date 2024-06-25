@@ -1,59 +1,10 @@
+package com.employeemanagement;
+
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 import java.util.*;
 import java.util.stream.Collectors;
-
-class Person {
-    private String name;
-    private LocalDate dateOfBirth;
-
-    public Person(String name, LocalDate dateOfBirth) {
-        this.name = name;
-        this.dateOfBirth = dateOfBirth;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public LocalDate getDateOfBirth() {
-        return dateOfBirth;
-    }
-}
-
-class Employee extends Person {
-    private BigDecimal salary;
-    private String role;
-
-    public Employee(String name, LocalDate dateOfBirth, BigDecimal salary, String role) {
-        super(name, dateOfBirth);
-        this.salary = salary;
-        this.role = role;
-    }
-
-    public BigDecimal getSalary() {
-        return salary;
-    }
-
-    public void setSalary(BigDecimal salary) {
-        this.salary = salary;
-    }
-
-    public String getRole() {
-        return role;
-    }
-
-    @Override
-    public String toString() {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        return "Nome: " + getName() + 
-               ", Data de Aniversário: " + getDateOfBirth().format(formatter) +
-               ", Salário: " + String.format("%,.2f", salary).replace('.', ',') +
-               ", Função: " + role;
-    }
-}
 
 public class Main {
     public static void main(String[] args) {
@@ -112,7 +63,6 @@ public class Main {
         BigDecimal minimumWage = new BigDecimal("1212.00");
         System.out.println("\nSalários dos funcionários em salários mínimos:");
         employees.forEach(employee -> {
-            @SuppressWarnings("deprecation")
             BigDecimal salaryInMinimumWages = employee.getSalary().divide(minimumWage, 2, BigDecimal.ROUND_HALF_UP);
             System.out.println(employee.getName() + ": " + String.format("%,.2f", salaryInMinimumWages).replace('.', ',') + " salário mínimo");
         });
